@@ -1,0 +1,11 @@
+DefaultParamTest {
+
+    start() {
+         language("JavaSpace")
+         language()
+    }
+
+    language(string lang = "Java") {
+        print "My favourite language is " + lang
+    }
+}

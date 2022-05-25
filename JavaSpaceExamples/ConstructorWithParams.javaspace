@@ -1,0 +1,10 @@
+ConstructorWithParams {
+
+    start() {
+        var instance = new ConstructorWithParams(5)
+    }
+
+    ConstructorWithParams(int x) {
+        print "Constructor with parameter x = " + x
+    }
+}

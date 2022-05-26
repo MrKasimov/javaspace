@@ -21,10 +21,10 @@ public class BlockStatementVisitor extends JavaSpaceBaseVisitor<Block>{
 
     @Override
     public Block visitBlock(@NotNull BlockContext ctx) {
-        List<StatementContext> blockstatementsCtx = ctx.statement();
+        List<StatementContext> blockStatementsCtx = ctx.statement();
         Scope newScope = new Scope(scope);
         StatementVisitor statementVisitor = new StatementVisitor(newScope);
-        List<Statement> statements = blockstatementsCtx.stream().map(smtt -> smtt.accept(statementVisitor)).collect(Collectors.toList());
+        List<Statement> statements = blockStatementsCtx.stream().map(smtt -> smtt.accept(statementVisitor)).collect(Collectors.toList());
         return new Block(newScope, statements);
     }
 }

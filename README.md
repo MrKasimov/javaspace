@@ -22,7 +22,7 @@ mvn clean package
 java -jar .\compiler\target\compiler-1.0-SNAPSHOT-jar-with-dependencies.jar .\JavaSpaceExamples\HelloWorld.javaspace
 ```
 
-3. Run compiled .javaspace program
+3. Run compiled .javaspace program.
 
 ```bash
 java HelloWorld

@@ -1,4 +1,4 @@
-ConstructorWithParams {
+class ConstructorWithParams {
 
     start() {
         var instance = new ConstructorWithParams(5)

@@ -1,4 +1,4 @@
-PrimitiveTypes {
+class PrimitiveTypes {
     start() {
         var stringVar = "str"
         var booleanVar = false

@@ -1,4 +1,4 @@
-SumCalculator {
+class SumCalculator {
     start() {
        var expected = 8
        var actual = sum(3,5)

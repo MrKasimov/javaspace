@@ -6,14 +6,10 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.javaspace.antlr.JavaSpaceBaseVisitor;
 import org.javaspace.antlr.JavaSpaceLexer;
 import org.javaspace.antlr.JavaSpaceParser;
-import org.javaspace.domain.ClassDeclaration;
 import org.javaspace.domain.CompilationUnit;
 import org.javaspace.parsing.visitor.ClassVisitor;
-import org.javaspace.parsing.visitor.statement.StatementVisitor;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class Parser {
 //    public ClassDeclaration importFile(String relativePath) throws IOException {

@@ -1,4 +1,4 @@
-Fields {
+class Fields {
     int field
 
     start {

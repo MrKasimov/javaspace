@@ -5,7 +5,7 @@ compilationUnit : classDeclaration EOF;
 importDirective  : 'import' FILE_PATH;
 
 className        : qualifiedName ;
-classDeclaration : className '{' classBody '}';
+classDeclaration : 'class' className '{' classBody '}';
 classBody        : field* function*;
 
 field : type name;
@@ -96,7 +96,7 @@ value : NUMBER
       | STRING
       ;
 
-qualifiedName : ID ('.' ID)*;z
+qualifiedName : ID ('.' ID)*;
 
 VARIABLE  : 'var';
 PRINT     : 'print';

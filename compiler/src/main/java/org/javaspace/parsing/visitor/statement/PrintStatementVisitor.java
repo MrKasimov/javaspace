@@ -16,7 +16,6 @@ public class PrintStatementVisitor extends JavaSpaceBaseVisitor<PrintStatement> 
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
     public PrintStatement visitPrintStatement(@NotNull PrintStatementContext ctx) {
         ExpressionContext expressionCtx = ctx.expression();
         Expression expression = expressionCtx.accept(expressionVisitor);

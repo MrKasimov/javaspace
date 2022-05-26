@@ -20,7 +20,6 @@ public class VariableDeclarationStatementVisitor extends JavaSpaceBaseVisitor<Va
         this.scope = scope;
     }
 
-    @Override
     public VariableDeclaration visitVariableDeclaration(@NotNull VariableDeclarationContext ctx) {
         String varName = ctx.name().getText();
         ExpressionContext expressionCtx = ctx.expression();

@@ -12,8 +12,6 @@ public class JavaSpaceTreeWalkErrorListener extends BaseErrorListener {
 
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-        String errorFormat = "You fucked up at line %d,char %d :(. Details:%n%s";
-        String errorMsg = String.format(errorFormat, line, charPositionInLine, msg);
-        LOGGER.error(errorMsg);
+        LOGGER.error(String.format("Unexpected token at line %d, character %d: %s", line, charPositionInLine, msg));
     }
 }

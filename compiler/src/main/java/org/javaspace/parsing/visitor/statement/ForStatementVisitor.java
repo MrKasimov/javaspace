@@ -23,7 +23,6 @@ public class ForStatementVisitor extends JavaSpaceBaseVisitor<RangedForStatement
         expressionVisitor = new ExpressionVisitor(this.scope);
     }
 
-    @Override
     public RangedForStatement visitForStatement(@NotNull ForStatementContext ctx) {
         Scope newScope = new Scope(scope);
         ForConditionsContext forExpressionContext = ctx.forConditions();

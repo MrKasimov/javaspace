@@ -1,7 +1,7 @@
 package org.javaspace.parsing.visitor;
 
 import org.javaspace.antlr.JavaSpaceBaseVisitor;
-import org.javaspace.antlr.JavaSpaceParser.FunctionDeclarationContext;
+import org.javaspace.antlr.JavaSpaceParser.FunctionSignatureContext;
 import org.javaspace.antlr.JavaSpaceParser.ParametersListContext;
 import org.javaspace.domain.node.expression.Parameter;
 import org.javaspace.domain.scope.Scope;
@@ -23,16 +23,17 @@ public class FunctionSignatureVisitor extends JavaSpaceBaseVisitor<FunctionSigna
         this.expressionVisitor = new ExpressionVisitor(scope);
     }
 
-    @Override
-    public FunctionSignature visitFunctionDeclaration(@NotNull FunctionDeclarationContext ctx) {
-        String functionName = ctx.functionName().getText();
+    public FunctionSignature visitFunctionSignature(@NotNull FunctionSignatureContext ctx) {
+        String name = ctx.functionName().getText();
         Type returnType = TypeResolver.getFromTypeContext(ctx.type());
         ParametersListContext parametersCtx = ctx.parametersList();
-        if(parametersCtx != null) {
-            List<Parameter> parameters = parametersCtx.accept(new ParameterExpressionListVisitor(expressionVisitor));
-            return new FunctionSignature(functionName, parameters, returnType);
+        if(parametersCtx == null) {
+            return new FunctionSignature(name, Collections.emptyList(), returnType);
         }
-        return new FunctionSignature(functionName, Collections.emptyList(), returnType);
-
+        return new FunctionSignature(
+                name,
+                parametersCtx.accept(new ParameterExpressionListVisitor(expressionVisitor)),
+                returnType
+        );
     }
 }

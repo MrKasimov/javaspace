@@ -16,11 +16,7 @@ public class FieldVisitor extends JavaSpaceBaseVisitor<Field> {
         this.scope = scope;
     }
 
-    @Override
     public Field visitField(@NotNull JavaSpaceParser.FieldContext ctx) {
-        Type owner = scope.getClassType();
-        Type type = TypeResolver.getFromTypeContext(ctx.type());
-        String name = ctx.name().getText();
-        return new Field(name, owner, type);
+        return new Field(ctx.name().getText(), scope.getClassType(), TypeResolver.getFromTypeContext(ctx.type()));
     }
 }

@@ -3,7 +3,6 @@ package org.javaspace.domain.scope;
 import org.javaspace.domain.node.expression.Argument;
 import org.javaspace.domain.node.expression.Parameter;
 import org.javaspace.domain.type.Type;
-import org.javaspace.exception.ParameterForNameNotFoundException;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,18 +25,6 @@ public class FunctionSignature {
 
     public List<Parameter> getParameters() {
         return Collections.unmodifiableList(parameters);
-    }
-
-    public Parameter getParameterForName(String name) {
-        return parameters.stream()
-                .filter(param -> param.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new ParameterForNameNotFoundException(name,parameters));
-    }
-
-    public int getIndexOfParameter(String parameterName) {
-        Parameter parameter = getParameterForName(parameterName);
-        return parameters.indexOf(parameter);
     }
 
     public boolean matches(String otherSignatureName, List<Argument> arguments) {

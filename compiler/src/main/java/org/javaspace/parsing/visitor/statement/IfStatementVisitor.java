@@ -19,7 +19,6 @@ public class IfStatementVisitor extends JavaSpaceBaseVisitor<IfStatement> {
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
     public IfStatement visitIfStatement(@NotNull IfStatementContext ctx) {
         ExpressionContext conditionalExpressionContext = ctx.expression();
         Expression condition = conditionalExpressionContext.accept(expressionVisitor);

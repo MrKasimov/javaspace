@@ -20,18 +20,18 @@ public class ParameterExpressionVisitor extends JavaSpaceBaseVisitor<Parameter> 
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
+    
     public Parameter visitParameter(@NotNull ParameterContext ctx) {
-        String name = ctx.ID().getText();
-        Type type = TypeResolver.getFromTypeContext(ctx.type());
-        return new Parameter(name, type, Optional.empty());
+        return new Parameter(
+                ctx.ID().getText(),
+                TypeResolver.getFromTypeContext(ctx.type()),
+                Optional.empty()
+        );
     }
 
-    @Override
+    
     public Parameter visitParameterWithDefaultValue(@NotNull ParameterWithDefaultValueContext ctx) {
-        String name = ctx.ID().getText();
-        Type type = TypeResolver.getFromTypeContext(ctx.type());
         Expression defaultValue = ctx.defaultValue.accept(expressionVisitor);
-        return new Parameter(name, type, Optional.of(defaultValue));
+        return new Parameter(ctx.ID().getText(), TypeResolver.getFromTypeContext(ctx.type()), Optional.of(defaultValue));
     }
 }

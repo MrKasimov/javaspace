@@ -21,7 +21,6 @@ public class ParameterExpressionListVisitor extends JavaSpaceBaseVisitor<List<Pa
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
     public List<Parameter> visitParametersList(@NotNull ParametersListContext ctx) {
         List<ParameterContext> paramsCtx = ctx.parameter();
         ParameterExpressionVisitor parameterExpressionVisitor = new ParameterExpressionVisitor(expressionVisitor);

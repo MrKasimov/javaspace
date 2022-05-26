@@ -19,14 +19,12 @@ public class ArgumentExpressionsListVisitor extends JavaSpaceBaseVisitor<List<Ar
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
     public List<Argument> visitUnnamedArgumentsList(@NotNull UnnamedArgumentsListContext ctx) {
         ArgumentExpressionVisitor argumentExpressionVisitor = new ArgumentExpressionVisitor(expressionVisitor);
         return ctx.argument().stream()
                 .map(a -> a.accept(argumentExpressionVisitor)).collect(toList());
     }
 
-    @Override
     public List<Argument> visitNamedArgumentsList(@NotNull NamedArgumentsListContext ctx) {
         ArgumentExpressionVisitor argumentExpressionVisitor = new ArgumentExpressionVisitor(expressionVisitor);
         return ctx.namedArgument().stream()

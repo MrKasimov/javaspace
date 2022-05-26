@@ -19,8 +19,8 @@ public class Value implements Expression {
     }
 
     @Override
-    public void accept(ExpressionGenerator genrator) {
-        genrator.generate(this);
+    public void accept(ExpressionGenerator generator) {
+        generator.generate(this);
     }
 
     @Override

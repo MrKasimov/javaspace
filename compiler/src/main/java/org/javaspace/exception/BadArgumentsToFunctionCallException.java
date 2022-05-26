@@ -4,6 +4,6 @@ import org.javaspace.domain.node.expression.Call;
 
 public class BadArgumentsToFunctionCallException extends RuntimeException {
     public BadArgumentsToFunctionCallException(Call functionCall) {
-        super("You called function with bad arguments " + functionCall);
+        super(String.format("Called a function %s with incorrect number of parameters", functionCall));
     }
 }

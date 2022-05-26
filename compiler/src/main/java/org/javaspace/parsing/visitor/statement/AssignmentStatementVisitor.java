@@ -14,7 +14,7 @@ public class AssignmentStatementVisitor extends JavaSpaceBaseVisitor<Assignment>
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
+    
     public Assignment visitAssignment(@NotNull JavaSpaceParser.AssignmentContext ctx) {
         JavaSpaceParser.ExpressionContext expressionCtx = ctx.expression();
         Expression expression = expressionCtx.accept(expressionVisitor);

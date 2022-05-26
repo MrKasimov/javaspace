@@ -5,7 +5,7 @@ compilationUnit : classDeclaration EOF;
 importDirective  : 'import' FILE_PATH;
 
 className        : qualifiedName ;
-classDeclaration : 'class' className '{' classBody '}';
+classDeclaration : className '{' classBody '}';
 classBody        : field* function*;
 
 field : type name;

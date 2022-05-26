@@ -1,4 +1,4 @@
-class DefaultParamTest {
+DefaultParamTest {
 
     start() {
          language("JavaSpace")

@@ -1,4 +1,4 @@
-class ControlStatements {
+ControlStatements {
     start() {
         print "Print from 1 to 10"
         for x from 1 to 10 {

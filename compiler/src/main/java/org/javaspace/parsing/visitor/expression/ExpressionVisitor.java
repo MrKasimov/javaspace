@@ -34,56 +34,56 @@ public class ExpressionVisitor extends JavaSpaceBaseVisitor<Expression> {
         conditionalExpressionVisitor = new ConditionalExpressionVisitor(this);
     }
 
-    @Override
+    
     public Expression visitVarReference(@NotNull VarReferenceContext ctx) {
         return variableReferenceExpressionVisitor.visitVarReference(ctx);
     }
 
-    @Override
+    
     public Expression visitValue(@NotNull ValueContext ctx) {
         return valueExpressionVisitor.visitValue(ctx);
     }
 
-    @Override
+    
     public Expression visitFunctionCall(@NotNull FunctionCallContext ctx) {
         return callExpressionVisitor.visitFunctionCall(ctx);
     }
 
-    @Override
+    
     public Expression visitConstructorCall(@NotNull ConstructorCallContext ctx) {
         return callExpressionVisitor.visitConstructorCall(ctx);
     }
 
-    @Override
+    
     public Expression visitSupercall(@NotNull SupercallContext ctx) {
         return callExpressionVisitor.visitSupercall(ctx);
     }
 
-    @Override
+    
     public Expression visitAdd(@NotNull AddContext ctx) {
 
         return arithmeticExpressionVisitor.visitAdd(ctx);
     }
 
-    @Override
+    
     public Expression visitMultiply(@NotNull MultiplyContext ctx) {
 
         return arithmeticExpressionVisitor.visitMultiply(ctx);
     }
 
-    @Override
+    
     public Expression visitSubstract(@NotNull SubstractContext ctx) {
 
         return arithmeticExpressionVisitor.visitSubstract(ctx);
     }
 
-    @Override
+    
     public Expression visitDivide(@NotNull DivideContext ctx) {
 
         return arithmeticExpressionVisitor.visitDivide(ctx);
     }
 
-    @Override
+    
     public ConditionalExpression visitConditionalExpression(@NotNull ConditionalExpressionContext ctx) {
         return conditionalExpressionVisitor.visitConditionalExpression(ctx);
     }

@@ -2,6 +2,8 @@ grammar JavaSpace;
 
 compilationUnit : classDeclaration EOF;
 
+importDirective  : 'import' FILE_PATH;
+
 className        : qualifiedName ;
 classDeclaration : className '{' classBody '}';
 classBody        : field* function*;
@@ -15,8 +17,8 @@ functionSignature : (type)? functionName '('? parametersList? ')'?;
 parameter                 : type ID;
 parameterWithDefaultValue : type ID '=' defaultValue=expression;
 parametersList            : parameter (',' parameter)*
-                          |  parameter (',' parameterWithDefaultValue)*
-                          |  parameterWithDefaultValue (',' parameterWithDefaultValue)*
+                          | parameter (',' parameterWithDefaultValue)*
+                          | parameterWithDefaultValue (',' parameterWithDefaultValue)*
                           ;
 
 type          : primitiveType
@@ -50,7 +52,6 @@ statement : block
 
 
 // control sequences and statements
-
 printStatement      : PRINT expression;
 variableDeclaration : VARIABLE name EQUALS expression;
 assignment          : name EQUALS expression;
@@ -95,15 +96,15 @@ value : NUMBER
       | STRING
       ;
 
-qualifiedName : ID ('.' ID)*;
+qualifiedName : ID ('.' ID)*;z
 
-IMPORT   : 'import';
-VARIABLE : 'var';
-PRINT    : 'print';
-EQUALS   : '=';
-NUMBER   : '-'?[0-9.]+;
-BOOL     : 'true' | 'false';
-STRING   : '"'~('\r' | '\n' | '"')*'"';
-ID       : [a-zA-Z0-9]+;
-WS       : [ \t\n\r]+ -> skip;
-COMMENT  : '#' ~[\r\n]* '\r'? '\n' -> skip ;
+VARIABLE  : 'var';
+PRINT     : 'print';
+EQUALS    : '=';
+NUMBER    : '-'?[0-9.]+;
+BOOL      : 'true' | 'false';
+STRING    : '"'~('\r' | '\n' | '"')*'"';
+ID        : [a-zA-Z0-9]+;
+WS        : [ \t\n\r]+ -> skip;
+COMMENT   : '#' ~[\r\n]* '\r'? '\n' -> skip ;
+FILE_PATH : [a-zA-Z0-9/]+;

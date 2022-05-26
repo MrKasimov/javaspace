@@ -28,7 +28,6 @@ public class ClassVisitor extends JavaSpaceBaseVisitor<ClassDeclaration> {
 
     private Scope scope;
 
-    @Override
     public ClassDeclaration visitClassDeclaration(@NotNull ClassDeclarationContext ctx) {
         MetaData metaData = new MetaData(ctx.className().getText(), MetaData.objectClassName);
 

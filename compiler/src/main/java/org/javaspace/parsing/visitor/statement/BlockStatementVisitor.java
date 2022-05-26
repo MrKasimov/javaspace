@@ -19,7 +19,6 @@ public class BlockStatementVisitor extends JavaSpaceBaseVisitor<Block>{
         this.scope = scope;
     }
 
-    @Override
     public Block visitBlock(@NotNull BlockContext ctx) {
         List<StatementContext> blockStatementsCtx = ctx.statement();
         Scope newScope = new Scope(scope);

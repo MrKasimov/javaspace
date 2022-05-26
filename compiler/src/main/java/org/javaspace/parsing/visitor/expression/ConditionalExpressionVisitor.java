@@ -18,7 +18,6 @@ public class ConditionalExpressionVisitor extends JavaSpaceBaseVisitor<Condition
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
     public ConditionalExpression visitConditionalExpression(@NotNull ConditionalExpressionContext ctx) {
         ExpressionContext leftExpressionCtx = ctx.expression(0);
         ExpressionContext rightExpressionCtx = ctx.expression(1);

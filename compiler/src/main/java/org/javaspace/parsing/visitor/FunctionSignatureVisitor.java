@@ -23,7 +23,6 @@ public class FunctionSignatureVisitor extends JavaSpaceBaseVisitor<FunctionSigna
         this.expressionVisitor = new ExpressionVisitor(scope);
     }
 
-    @Override
     public FunctionSignature visitFunctionSignature(@NotNull FunctionSignatureContext ctx) {
         String name = ctx.functionName().getText();
         Type returnType = TypeResolver.getFromTypeContext(ctx.type());

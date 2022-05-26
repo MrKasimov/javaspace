@@ -27,7 +27,7 @@ public class CallExpressionVisitor extends JavaSpaceBaseVisitor<Call> {
         this.scope = scope;
     }
 
-    @Override
+    
     public Call visitFunctionCall(@NotNull FunctionCallContext ctx) {
         String functionName = ctx.functionName().getText();
         if (functionName.equals(scope.getClassName())) {
@@ -46,14 +46,14 @@ public class CallExpressionVisitor extends JavaSpaceBaseVisitor<Call> {
         return new FunctionCall(signature, arguments, new LocalVariableReference(thisVariable));
     }
 
-    @Override
+    
     public Call visitConstructorCall(@NotNull ConstructorCallContext ctx) {
         String className = ctx.className().getText();
         List<Argument> arguments = getArgumentsForCall(ctx.argumentList());
         return new ConstructorCall(className, arguments);
     }
 
-    @Override
+    
     public Call visitSupercall(@NotNull SupercallContext ctx) {
         List<Argument> arguments = getArgumentsForCall(ctx.argumentList());
         return new SuperCall(arguments);

@@ -20,7 +20,6 @@ public class FunctionVisitor extends JavaSpaceBaseVisitor<Function> {
         this.scope = new Scope(scope);
     }
 
-    @Override
     public Function visitFunction(@NotNull FunctionContext ctx) {
         FunctionSignature signature = ctx.functionSignature().accept(new FunctionSignatureVisitor(scope));
         scope.addLocalVariable(new LocalVariable("this",scope.getClassType()));

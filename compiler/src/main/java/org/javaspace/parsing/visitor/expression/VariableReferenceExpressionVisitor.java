@@ -17,7 +17,6 @@ public class VariableReferenceExpressionVisitor extends JavaSpaceBaseVisitor<Ref
         this.scope = scope;
     }
 
-    @Override
     public Reference visitVarReference(@NotNull VarReferenceContext ctx) {
         String varName = ctx.getText();
         if(scope.isFieldExists(varName)) {

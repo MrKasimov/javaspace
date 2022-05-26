@@ -19,7 +19,7 @@ public class ArithmeticExpressionVisitor extends JavaSpaceBaseVisitor<Arthimetic
         this.expressionVisitor = expressionVisitor;
     }
 
-    @Override
+    
     public ArthimeticExpression visitAdd(@NotNull AddContext ctx) {
         ExpressionContext leftExpression = ctx.expression(0);
         ExpressionContext rightExpression = ctx.expression(1);
@@ -30,7 +30,7 @@ public class ArithmeticExpressionVisitor extends JavaSpaceBaseVisitor<Arthimetic
         return new Addition(leftExpress, rightExpress);
     }
 
-    @Override
+    
     public ArthimeticExpression visitMultiply(@NotNull MultiplyContext ctx) {
         ExpressionContext leftExpression = ctx.expression(0);
         ExpressionContext rightExpression = ctx.expression(1);
@@ -41,7 +41,7 @@ public class ArithmeticExpressionVisitor extends JavaSpaceBaseVisitor<Arthimetic
         return new Multiplication(leftExpress, rightExpress);
     }
 
-    @Override
+    
     public ArthimeticExpression visitSubstract(@NotNull SubstractContext ctx) {
         ExpressionContext leftExpression = ctx.expression(0);
         ExpressionContext rightExpression = ctx.expression(1);
@@ -52,7 +52,7 @@ public class ArithmeticExpressionVisitor extends JavaSpaceBaseVisitor<Arthimetic
         return new Substraction(leftExpress, rightExpress);
     }
 
-    @Override
+    
     public ArthimeticExpression visitDivide(@NotNull DivideContext ctx) {
         ExpressionContext leftExpression = ctx.expression(0);
         ExpressionContext rightExpression = ctx.expression(1);

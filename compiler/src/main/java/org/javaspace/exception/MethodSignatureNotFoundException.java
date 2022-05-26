@@ -7,6 +7,7 @@ import java.util.List;
 
 public class MethodSignatureNotFoundException extends RuntimeException {
     public MethodSignatureNotFoundException(Scope scope, String methodName, List<Argument> parameterTypes) {
-        super("There is no method '" + methodName + "' with parameters " + parameterTypes);
+        super(String.format("Signature of method %s with parameters %s wasn't found in the scope %s",
+                methodName, parameterTypes, scope));
     }
 }

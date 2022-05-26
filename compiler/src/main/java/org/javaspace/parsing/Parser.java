@@ -1,24 +1,33 @@
 package org.javaspace.parsing;
 
+import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.javaspace.antlr.JavaSpaceBaseVisitor;
 import org.javaspace.antlr.JavaSpaceLexer;
 import org.javaspace.antlr.JavaSpaceParser;
 import org.javaspace.domain.CompilationUnit;
-import org.javaspace.parsing.visitor.CompilationUnitVisitor;
-import org.antlr.v4.runtime.*;
+import org.javaspace.parsing.visitor.ClassVisitor;
 
 import java.io.IOException;
 
 public class Parser {
     public CompilationUnit getCompilationUnit(String fileAbsolutePath) throws IOException {
-        CharStream charStream = new ANTLRFileStream(fileAbsolutePath);
-        JavaSpaceLexer lexer = new JavaSpaceLexer(charStream);
-        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        JavaSpaceParser parser = new JavaSpaceParser(tokenStream);
+        JavaSpaceParser parser = new JavaSpaceParser(
+                new CommonTokenStream(
+                        new JavaSpaceLexer(
+                                new ANTLRFileStream(fileAbsolutePath)
+                        )
+                )
+        );
 
-        ANTLRErrorListener errorListener = new JavaSpaceTreeWalkErrorListener();
-        parser.addErrorListener(errorListener);
+        parser.addErrorListener(new JavaSpaceTreeWalkErrorListener());
 
-        CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
-        return parser.compilationUnit().accept(compilationUnitVisitor);
+        return parser.compilationUnit().accept(new JavaSpaceBaseVisitor<CompilationUnit>() {
+            @Override
+            public CompilationUnit visitCompilationUnit(@NotNull JavaSpaceParser.CompilationUnitContext ctx) {
+                return new CompilationUnit(ctx.classDeclaration().accept(new ClassVisitor()));
+            }
+        });
     }
 }

@@ -25,14 +25,16 @@ public class FunctionSignatureVisitor extends JavaSpaceBaseVisitor<FunctionSigna
 
     @Override
     public FunctionSignature visitFunctionSignature(@NotNull FunctionSignatureContext ctx) {
-        String functionName = ctx.functionName().getText();
+        String name = ctx.functionName().getText();
         Type returnType = TypeResolver.getFromTypeContext(ctx.type());
         ParametersListContext parametersCtx = ctx.parametersList();
-        if(parametersCtx != null) {
-            List<Parameter> parameters = parametersCtx.accept(new ParameterExpressionListVisitor(expressionVisitor));
-            return new FunctionSignature(functionName, parameters, returnType);
+        if(parametersCtx == null) {
+            return new FunctionSignature(name, Collections.emptyList(), returnType);
         }
-        return new FunctionSignature(functionName, Collections.emptyList(), returnType);
-
+        return new FunctionSignature(
+                name,
+                parametersCtx.accept(new ParameterExpressionListVisitor(expressionVisitor)),
+                returnType
+        );
     }
 }

@@ -57,14 +57,15 @@ public class Scope {
         return getMethodCallSignature(identifier, Collections.<Argument>emptyList());
     }
 
-    public FunctionSignature getConstructorCallSignature(String className,List<Argument> arguments) {
-        boolean isDifferentThanCurrentClass = !className.equals(getClassName());
-        if(isDifferentThanCurrentClass) {
-            List<Type> argumentsTypes = arguments.stream().map(Argument::getType).collect(toList());
+    public FunctionSignature getConstructorCallSignature(String className, List<Argument> arguments) {
+        // if this class is called, just return it
+        if (className.equals(this.getClassName())) {
+            return getConstructorCallSignatureForCurrentClass(arguments);
+        }
+
+        List<Type> argumentsTypes = arguments.stream().map(Argument::getType).collect(toList());
             return new ClassPathScope().getConstructorSignature(className, argumentsTypes)
                     .orElseThrow(() -> new MethodSignatureNotFoundException(this,className,arguments));
-        }
-        return getConstructorCallSignatureForCurrentClass(arguments);
     }
 
     private FunctionSignature getConstructorCallSignatureForCurrentClass(List<Argument> arguments) {

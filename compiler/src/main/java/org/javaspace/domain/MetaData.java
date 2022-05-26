@@ -1,6 +1,8 @@
 package org.javaspace.domain;
 
 public class MetaData {
+
+    public static final String objectClassName = "java.lang.Object";
     private final String className;
     private final String superClassName;
 

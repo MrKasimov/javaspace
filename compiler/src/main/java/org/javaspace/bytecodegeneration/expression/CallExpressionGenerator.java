@@ -6,7 +6,7 @@ import org.javaspace.domain.scope.FunctionSignature;
 import org.javaspace.domain.scope.Scope;
 import org.javaspace.domain.type.ClassType;
 import org.javaspace.exception.BadArgumentsToFunctionCallException;
-import org.javaspace.exception.WrongArgumentNameException;
+import org.javaspace.exception.ArgumentNameNotFoundException;
 import org.javaspace.util.DescriptorFactory;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -87,13 +87,13 @@ public class CallExpressionGenerator {
         return Ordering.from(argumentIndexComparator).immutableSortedCopy(arguments);
     }
 
-    private Integer getIndexOfArgument(Argument argument, List<Parameter> parameters ) {
+    private Integer getIndexOfArgument(Argument argument, List<Parameter> parameters) {
         String paramName = argument.getParameterName().get();
         return parameters.stream()
                 .filter(p -> p.getName().equals(paramName))
                 .map(parameters::indexOf)
                 .findFirst()
-                .orElseThrow(() -> new WrongArgumentNameException(argument, parameters));
+                .orElseThrow(() -> new ArgumentNameNotFoundException(argument, parameters));
     }
 
     private void generateDefaultParameters(Call call, List<Parameter> parameters, List<Argument> arguments) {

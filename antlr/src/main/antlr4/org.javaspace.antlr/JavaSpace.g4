@@ -22,6 +22,7 @@ parametersList            : parameter (',' parameter)*
 type          : primitiveType
               | classType
               ;
+
 primitiveType : 'boolean' ('[' ']')*
               | 'string'  ('[' ']')*
               | 'char'    ('[' ']')*

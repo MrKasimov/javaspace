@@ -42,7 +42,7 @@ public class ClassVisitor extends JavaSpaceBaseVisitor<ClassDeclaration> {
                 .peek(scope::addField)
                 .collect(toList());
         methodsCtx.stream()
-                .map(method -> method.functionDeclaration().accept(functionSignatureVisitor))
+                .map(method -> method.functionSignature().accept(functionSignatureVisitor))
                 .forEach(scope::addSignature);
         boolean defaultConstructorExists = scope.isParameterLessSignatureExists(name);
         addDefaultConstructorSignatureToScope(name, defaultConstructorExists);

@@ -1,6 +1,5 @@
 grammar JavaSpace;
 
-// rules
 compilationUnit : classDeclaration EOF;
 
 className        : qualifiedName ;
@@ -20,7 +19,6 @@ parametersList            : parameter (',' parameter)*
                           |  parameterWithDefaultValue (',' parameterWithDefaultValue)*
                           ;
 
-// primitives
 type          : primitiveType
               | classType
               ;
@@ -97,8 +95,6 @@ value : NUMBER
       ;
 
 qualifiedName : ID ('.' ID)*;
-
-// tokens
 
 VARIABLE : 'var';
 PRINT    : 'print';

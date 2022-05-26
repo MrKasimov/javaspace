@@ -22,7 +22,7 @@ public class FunctionVisitor extends JavaSpaceBaseVisitor<Function> {
 
     @Override
     public Function visitFunction(@NotNull FunctionContext ctx) {
-        FunctionSignature signature = ctx.functionDeclaration().accept(new FunctionSignatureVisitor(scope));
+        FunctionSignature signature = ctx.functionSignature().accept(new FunctionSignatureVisitor(scope));
         scope.addLocalVariable(new LocalVariable("this",scope.getClassType()));
         addParametersAsLocalVariables(signature);
         Statement block = getBlock(ctx);
